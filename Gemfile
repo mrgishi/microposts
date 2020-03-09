@@ -58,5 +58,5 @@ gem 'kaminari'
 
 ## for heroku
 group :production do
-  gem 'pg', '>= 0.18', '< 2.0'
+  gem 'pg', '~> 0.19.0'
 end
