@@ -61,4 +61,4 @@ production:
   pool: 5
   database: microposts_production
   username: microposts
-  password: <%= ENV['MESSAGE-BOARD_DATABASE_PASSWORD'] %>
+  password: <%= ENV['MICROPOSTS_DATABASE_PASSWORD'] %>
