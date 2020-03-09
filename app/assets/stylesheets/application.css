@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+/* likes */
+
+.glyphicon-heart {
+  color: red;
+}
+.btn-default:hover > .glyphicon-heart-empty {
+  color: red;
+}
+.btn-default {
+  position: relative;
+  left: 60px;
+  border-color: #eee;
+}
