@@ -16,12 +16,19 @@
         </div>
       </div>
       <span class="like" id="like_form_<%= micropost.id %>">
-      <% if micropost.liked_by.include?(current_user) %>
-        <%= render "microposts/unlike", micropost: micropost %>
-      <% else %>
-        <%= render "microposts/like", micropost: micropost %>
+        <% if micropost.liked_by.include?(current_user) %>
+          <%= render "microposts/unlike", micropost: micropost %>
+        <% else %>
+          <%= render "microposts/like", micropost: micropost %>
+        <% end %>
+      </span>
+      <%= form_with(model: @comment, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, class: 'form-control', rows: 5 %>
+        </div>
+        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <% end %>
-    </span>
+
     </li>
   <% end %>
   <%= paginate microposts %>

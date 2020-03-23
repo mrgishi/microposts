@@ -4,4 +4,6 @@ class Micropost < ApplicationRecord
 
   has_many :favorite_relationships, dependent: :destroy
   has_many :liked_by, through: :favorite_relationships, source: :user
+
+  has_many :comments
 end

@@ -51,4 +51,6 @@ class User < ApplicationRecord
   def likes?(micropost)
     likes.include?(micropost)
   end
+
+  has_many :comments
 end
