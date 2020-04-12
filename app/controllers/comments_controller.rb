@@ -11,12 +11,15 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = current_micropost.comments.build(comment_params)
+    micropost = Micropost.find(params[:micropost_id])
+    @comment = micropost.comments.build(comment_params)
+    @comment.user_id = current_user.id
+
     if @comment.save
       flash[:success] = 'コメントを投稿しました。'
       redirect_to root_url
     else
-      @comments = current_micropost.feed_comments.order(id: :desc).page(params[:page])
+      @comments = current_user.feed_comments.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'コメントの投稿に失敗しました。'
       render 'toppages/index'
     end
@@ -28,14 +31,21 @@ class CommentsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def show
+    @micropost = Post.find(params[:id])
+    @comments = @micropost.comments
+    @comment = @micropost.comments.build
+  end
+
+
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.permit(:content)
   end
 
   def correct_user
-    @comment = current_micropost.comments.find_by(id: params[:id])
+    @comment = correct_user.comments.find_by(id: params[:id])
     unless @comment
       redirect_to root_url
     end

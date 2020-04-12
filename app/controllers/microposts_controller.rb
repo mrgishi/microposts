@@ -20,6 +20,12 @@ class MicropostsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def show
+    @micropost = micropost.find(params[:id])
+    @comments = @micropost.comments
+    @comment = @micropost.comments.build
+  end
+
   private
 
   def micropost_params
