@@ -22,24 +22,6 @@
           <%= render "microposts/like", micropost: micropost %>
         <% end %>
       </span>
-      <div class="comment-wrapper border-top　mb-10">
-  <p class="mt-5">コメント一覧</p>
-  <% micropost.comments.each do |comment| %>
-    <div>
-      <%= comment.content %>
-    </div>
-  <% end %>
-  <%
-    id = micropost.id
-    url = "/microposts/#{id}/comments"
-  %>
-  <%= form_with(url: url, local: true) do |f| %>
-    <div class="form-group">
-      <%= f.text_area :content, class: 'form-control', rows: 5 %>
-    </div>
-    <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
-  <% end %>
-</div>
 
     </li>
   <% end %>
